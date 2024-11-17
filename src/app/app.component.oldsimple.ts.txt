@@ -1,0 +1,67 @@
+import { NgClass, NgFor } from '@angular/common';
+import { Component } from '@angular/core';
+import { FormsModule} from '@angular/forms'
+import { RouterOutlet } from '@angular/router';
+
+import {MatButtonModule} from '@angular/material/button';
+import {MatDividerModule} from '@angular/material/divider';
+
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
+
+import { taskCommentsReducer } from './ngrx/task-comments.reducer';
+import { TaskCommentsEffects } from './ngrx/task-comments.effects';
+
+import {oneDayInMilliseconds, randomDesc, randomTitle } from './utils/Generator';
+
+import { Store } from '@ngrx/store';
+
+
+export interface TodoItem { 
+  id:number;
+  task:string;
+  title:string;
+  description:string;
+  dueDate:Date;
+  completed:boolean
+}
+
+@Component({
+  selector: 'app-root',
+  standalone: true,
+  imports: [RouterOutlet,FormsModule,NgFor,NgClass, 
+     MatButtonModule,
+    MatDividerModule],
+  templateUrl: './app.component.html',
+  styleUrl: './app.component.css'
+})
+export class AppComponent {
+  todoList:TodoItem [] =[];
+  newTask :string = '';
+  title: any;
+  
+  brushTask():void  {
+    if(this.newTask.trim() !== ''){
+      const newTodoItem : TodoItem = {
+        id: Date.now(),
+        task: this.newTask,
+        title: randomTitle(),
+        description: randomDesc(),
+        completed: false,
+        dueDate: new Date(Date.now() + oneDayInMilliseconds)
+      }
+       this.todoList.push(newTodoItem)
+       console.log(this.todoList)
+       this.newTask=""
+    }  
+  }
+  toggleCompleted(index:number ) :void {
+     console.log("i "+index)
+      this.todoList[index].completed = !this.todoList[index].completed
+
+  } 
+  deleteBrushTask(id:number){
+      this.todoList = this.todoList.filter(item => item.id !== id )
+      console.log(this.todoList)
+  }
+}

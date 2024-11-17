@@ -1,0 +1,21 @@
+.ticket-comment {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .ticket-comment .description {
+    flex: 1;
+    margin: 0 10px;
+  }
+  
+  mat-form-field {
+    flex: 1;
+  }
+  
+  button {
+    margin-left: 10px;
+  }
+  

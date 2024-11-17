@@ -1,0 +1,40 @@
+
+
+<app-breadcrumb></app-breadcrumb>
+<h2>Todo Detail</h2>     
+<form class="demo-form">
+    <div *ngIf="todo">
+        <!-- Title section (H3 becomes a mat-input in edit mode) -->
+     <mat-form-field *ngIf="isEditMode" class="full-width">
+      <input matInput [(ngModel)]="todo.title" [ngModelOptions]="{standalone: true}"  placeholder="Todo Title" />
+       </mat-form-field>
+      <h3 *ngIf="!isEditMode" >{{ todo.title }}</h3>
+
+        <!-- Description section (P becomes a mat-input in edit mode) -->
+    <mat-form-field *ngIf="isEditMode" class="full-width">
+      <textarea matInput [(ngModel)]="todo.description" [ngModelOptions]="{standalone: true}"  placeholder="Todo Description"></textarea>
+    </mat-form-field>
+      <p *ngIf="!isEditMode" >{{ todo.description }}</p>
+
+          <!-- Due date section (Small text becomes mat-input in edit mode) -->
+    <mat-form-field *ngIf="isEditMode" class="full-width">
+      <input matInput [(ngModel)]="todo.dueDate" [matDatepicker]="picker"  [ngModelOptions]="{standalone: true}" placeholder="Due Date" />
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+      <small *ngIf="!isEditMode" >Due Date: {{ todo.dueDate | date:  'dd/MM/yyyy'}}</small>
+
+      <div class="buttons">
+        <!-- Edit button becomes Save button in edit mode -->
+        <button mat-raised-button *ngIf="!isEditMode" (click)="onEdit()" color="primary">Edit</button>
+        <button mat-raised-button *ngIf="isEditMode" (click)="onSave()" color="accent">Save</button>
+  
+        <!-- Back to Todo List button, disabled in edit mode -->
+        <button mat-button [disabled]="isEditMode" (click)="goBack()" color="warn">Back to Todo List</button>
+      </div>
+       <!--<button mat-raised-button color="primary" (click)="goBack()">Back to Todo List</button--> 
+        </div>
+      </form> 
+    <ng-template #loading>
+      <p>Loading...</p>
+    </ng-template>

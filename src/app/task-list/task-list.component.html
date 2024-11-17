@@ -1,0 +1,57 @@
+
+<app-breadcrumb></app-breadcrumb>
+<h2>Task List</h2>
+ <ul class="brush-list">
+    <li *ngFor="let todo of todos$ | async; let i = index">
+     
+        <mat-checkbox 
+        [checked]="todo.completed" 
+        (change)="toggleCompletedNew(todo)">
+      </mat-checkbox>
+      <!-- Edit button appears when the todo item is hovered -->
+    <button 
+    mat-raised-button   
+    class="edit-btn" 
+    (click)="onEdit(todo.id)">
+    Edit
+  </button>
+      <span [class.completed]="todo.completed" class="spacebetween" placeholder="Todo Title"  >{{todo.title | truncIt:10 }}</span>
+    
+        <button mat-raised-button color="warn" (click)="deleteTodoItem(todo.id.toString())">Delete</button>
+      
+   
+</li>   
+</ul><div class="brush-task">
+  <input [(ngModel)]="newTask" placeholder="Add new task"/>
+   <button mat-raised-button (click)="addTodoItem()"> Add</button>
+</div>
+<!--<ul class="brush-list">
+    <li *ngFor="let todo of todoList; let i = index" >
+     
+        <mat-checkbox (checked)="todo.completed"  
+        (change)="toggleCompleted(i)">
+      </mat-checkbox>
+      
+      <input [class.completed]="todo.completed" matInput [(ngModel)]="todo.title" (blur) ="updateTodo(todo)" placeholder="Todo Title" />
+    
+        <button mat-raised-button color="warn" (click)="deleteBrushTask(todo.id)">Delete</button>
+         <span class="spacer" >{{todo.title | truncIt:10 }} </span>
+   
+</li>   
+</ul>  
+
+<div class="brush-task">
+    <input [(ngModel)]="newTask" placeholder="Add new task"/>
+     <button mat-raised-button (click)="brushTask()"> Add</button>
+  </div>-->
+ <!-- 
+
+    <div (click)="viewTask(todo.id.toString())"> </div>
+
+<div *ngFor="let todo of todos$ | async; let i = index" class="task-item">
+  <div (click)="viewTask(todo.id.toString())">
+    <h3>{{ todo.title }}</h3>
+    <p>{{ todo.description }}</p>
+  </div>
+ 
+</div>-->

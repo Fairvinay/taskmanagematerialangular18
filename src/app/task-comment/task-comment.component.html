@@ -1,0 +1,13 @@
+<div class="ticket-comment">
+  <mat-checkbox></mat-checkbox>
+  <div class="description">
+    <mat-form-field appearance="fill">
+      <mat-label>Comment</mat-label>
+      <textarea matInput [(ngModel)]="commentText"></textarea>
+    </mat-form-field>
+  </div>
+  <button mat-icon-button (click)="deleteComment()">
+    <mat-icon>delete</mat-icon>
+  </button>
+</div>
+<button mat-raised-button (click)="submitComment()">Submit Comment</button>
