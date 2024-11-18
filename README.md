@@ -14,6 +14,8 @@ Check `port 8080 is free and Spring boot TaskManagerServer is running `
 
 Check `8080 is not running still this may work standalone` 
 
+Basic `user and password is the demo user`
+
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
 
 ## Code scaffolding
